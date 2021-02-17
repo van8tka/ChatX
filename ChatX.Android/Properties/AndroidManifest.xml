@@ -5,6 +5,6 @@
 		  package="com.devprogram.chatx" 
 		  android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30" />
-	<application android:label="ChatX.Android" android:theme="@style/MainTheme"></application>
+	<application android:label="ChatX" android:theme="@style/MainChatXTheme"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

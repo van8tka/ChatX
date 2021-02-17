@@ -6,21 +6,15 @@
              xmlns:local="clr-namespace:ChatX;assembly=ChatX"
              x:Class="ChatX.View.LoginView"  
              IsBusy="{Binding IsBusy}"
+             Title="ChatX"
              >
 
     <StackLayout>
-        <Frame BackgroundColor="Gold" Padding="24" CornerRadius="0">
-            <Label Text="ChatX!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <StackLayout Padding="30,0,30,0" >
-            <Label Text="Войти в чат"
-                   FontSize="Title" 
-                   HorizontalTextAlignment="Center" 
-                  Margin="0,50,0,50"/>
-            <Label Text="Логин" FontSize="16" />
-            <Entry Placeholder="Логин" Text="{Binding Path=LoginModelField.Login}" ReturnType="Next"/>
-            <Label Text="Пароль" FontSize="16"/>
-            <Entry Placeholder="Пароль" Text="{Binding Path=LoginModelField.Password}" ReturnType="Done"/>
+        <StackLayout Padding="30,0,30,0" VerticalOptions="CenterAndExpand" >
+            <Label TextColor="Blue" Text="Логин" FontSize="16" Margin="10" FontAttributes="Bold"/>
+            <Entry TextColor="Blue" Placeholder="Логин" Text="{Binding Path=LoginModelField.Login}" ReturnType="Next"/>
+            <Label TextColor="Blue" Text="Пароль" FontSize="16" Margin="10" FontAttributes="Bold"/>
+            <Entry TextColor="Blue" IsPassword="True" Placeholder="Пароль" Text="{Binding Path=LoginModelField.Password}" ReturnType="Done"/>
             <Button Text="Войти"
                     Command="{Binding EnterCommand}"
                     Margin="0,20,0,0" 

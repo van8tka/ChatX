@@ -1,7 +1,5 @@
 ﻿using ChatX.ViewModel;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ChatX.View
 {
@@ -12,7 +10,5 @@ namespace ChatX.View
             InitializeComponent();
             BindingContext = App.GetContainer.GetInstance<ContactsViewModel>();
         }
-
-        
     }
 }

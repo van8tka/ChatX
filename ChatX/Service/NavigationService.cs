@@ -95,7 +95,7 @@ namespace ChatX.Service
             if (_mainPage == null)
                 Application.Current.MainPage = new NavigationPage(page);
             else
-                await _mainPage.Navigation.PushAsync(new NavigationPage(page),true);
+                await _mainPage.Navigation.PushAsync(page,true);
           await (page.BindingContext as ViewModelBase).InitializeAsync(param);
         }
 
