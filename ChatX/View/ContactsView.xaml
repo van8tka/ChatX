@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatX.View.ContactsView"
+             IsBusy="{Binding IsBusy}"
+             Title="ChatX - Contacts"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Contacts}"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="True"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal"  Margin="10">
+                                  
+                                        <Image HorizontalOptions="Start"
+                                              Source="{Binding Avatar}"
+                                               HeightRequest="72"
+                                               WidthRequest="36"
+                                           />
+                                  
+                                    <Label Text="{Binding Name}" 
+                                           Margin="10,0,0,0"
+                                           HorizontalOptions="StartAndExpand"
+                                           FontSize="Title" 
+                                           TextColor="Blue"/>
+                                    <Label Text="{Binding UnreadCount}" 
+                                               TextColor="Blue" 
+                                               FontSize="Subtitle"
+                                               BackgroundColor="Gold"
+                                               IsVisible="{Binding VisibleUnreadCount}"
+                                               Margin="0,12,0,20"
+                                               Padding="10"
+                                           />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
