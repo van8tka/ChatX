@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:ChatX.ViewModel;assembly=ChatX"
              xmlns:model="clr-namespace:ChatX.Model;assembly=ChatX"
              xmlns:local="clr-namespace:ChatX;assembly=ChatX"
+             xmlns:b="clr-namespace:ChatX.Behavior;assembly=ChatX"
              x:Class="ChatX.View.ContactsView"  
              IsBusy="{Binding IsBusy}"
              Title="ChatX"
@@ -15,10 +16,14 @@
         <ListView ItemsSource="{Binding Contacts}"
                       CachingStrategy="RecycleElement"
                       HasUnevenRows="True"
+                      SelectionMode="None"
                       >
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ContactTappedCommand}" CommandParameter="{Binding ItemTappedEventArgs}"/>
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <ViewCell >
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal"  Margin="10">
 

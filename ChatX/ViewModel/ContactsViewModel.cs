@@ -4,6 +4,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ChatX.ViewModel
 {
@@ -14,6 +16,13 @@ namespace ChatX.ViewModel
         public ContactsViewModel(INavigationService navigation, IChatXLog log, IWebService webService, ISessionService session) : base(navigation, log) {
             _webService = webService;
             _session = session;
+            ContactTappedCommand = new Command<ItemTappedEventArgs>(async (args)=>await ContactTapped(args));
+        }
+
+        private async Task ContactTapped(ItemTappedEventArgs args)
+        {
+            var userModel = args.Item;
+            await NavigationService.NavigateToAsync<ChatViewModel>(userModel);
         }
 
         private ObservableCollection<UserModel> _contacts;
@@ -24,8 +33,6 @@ namespace ChatX.ViewModel
                 _contacts = value;
             OnPropertyChanged(nameof(Contacts)); }
         }
-
-       
 
         public override async Task InitializeAsync(object parameter)
         {
@@ -42,5 +49,7 @@ namespace ChatX.ViewModel
                 Log.Error(this, e);
             }
         }
+
+        public ICommand ContactTappedCommand { get; private set; }
     }
 }
