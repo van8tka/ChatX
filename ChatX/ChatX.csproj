@@ -32,5 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behavior\" />
+    <Folder Include="View\MessageCellsView\" />
+    <Folder Include="Enums\" />
+    <Folder Include="View\Partials\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>

@@ -1,18 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:msgtempl="clr-namespace:ChatX.View.MessageCellsView;assembly=ChatX"
+             xmlns:partials="clr-namespace:ChatX.View.Partials;assembly=ChatX"
+             xmlns:controls="clr-namespace:ChatX.Controls;assembly=ChatX"
+             xmlns:behavior="clr-namespace:ChatX.Behavior;assembly=ChatX"
              x:Class="ChatX.View.ChatView"
              Title="{Binding ChatName}"
              IsBusy="{Binding IsBusy}"
+             BackgroundColor="LightGoldenrodYellow"
              >
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Settings"/>
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <msgtempl:ChatTemplateSelector x:Key="MsgTemplateSelector"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--first row - for message list,
+    second row  - separator betwen input and list messages
+    third row - input-->
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+       
+        <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="StartAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView
+                      Grid.Row="0"
+                      BackgroundColor="LightGoldenrodYellow"
+                      ItemTemplate="{StaticResource MsgTemplateSelector}"
+                      ItemsSource="{Binding Messages}"
+                      Margin="0"
+                      HasUnevenRows="True"
+                      SelectionMode="None"
+                      SeparatorColor="Transparent"
+                      ItemTapped="ChatList_ItemTapped"
+                      x:Name="ChatList">
+            </ListView>
+
+            <BoxView Grid.Row="1"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="Transparent"
+                     />
+            <partials:ChatInputBarView Grid.Row="2" Margin="0,0,10,10" x:Name="chatInput"/>
+            
+        </Grid>
+          
     </ContentPage.Content>
 </ContentPage>
