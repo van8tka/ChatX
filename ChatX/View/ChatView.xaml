@@ -9,6 +9,7 @@
              Title="{Binding ChatName}"
              IsBusy="{Binding IsBusy}"
              BackgroundColor="LightGoldenrodYellow"
+           
              >
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Settings"/>
@@ -24,35 +25,28 @@
     second row  - separator betwen input and list messages
     third row - input-->
     <ContentPage.Content>
-       
         <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="StartAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListView
-                      Grid.Row="0"
-                      BackgroundColor="LightGoldenrodYellow"
-                      ItemTemplate="{StaticResource MsgTemplateSelector}"
-                      ItemsSource="{Binding Messages}"
-                      Margin="0"
-                      HasUnevenRows="True"
-                      SelectionMode="None"
-                      SeparatorColor="Transparent"
-                      Rotation="180"
-                      FlowDirection="RightToLeft"
-                      ItemTapped="ChatList_ItemTapped"
-                      x:Name="ChatList">
-            </ListView>
-
-          <BoxView Grid.Row="1"
+            <CollectionView
+                 Grid.Row="0"
+                 VerticalOptions="FillAndExpand"
+                 ItemsSource="{Binding Messages}"
+                 ItemTemplate="{StaticResource MsgTemplateSelector}"
+                 BackgroundColor="LightGoldenrodYellow"
+                 SelectionMode="None"
+                 ItemsUpdatingScrollMode="KeepLastItemInView"
+                 x:Name="ChatList"
+                >
+                </CollectionView>
+            <BoxView Grid.Row="1"
                      HorizontalOptions="FillAndExpand"
-                     BackgroundColor="Transparent"
+                     BackgroundColor="Red"
                      />
             <partials:ChatInputBarView Grid.Row="2" Margin="0,0,10,10" x:Name="chatInput"/>
-            
         </Grid>
-          
     </ContentPage.Content>
 </ContentPage>

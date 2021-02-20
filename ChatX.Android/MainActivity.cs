@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ChatX.Droid.Renderers;
+using Xamarin.Forms;
 
 namespace ChatX.Droid
 {
@@ -22,8 +24,31 @@ namespace ChatX.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        private bool _lieAboutCurrentFocus;
+        public override bool DispatchTouchEvent(MotionEvent ev)
+        {
+            var focused = CurrentFocus;
+            bool customEntryRendererFocused = focused != null && focused.Parent is CustomEditorRenderer;
+            _lieAboutCurrentFocus = customEntryRendererFocused;
+            var result = base.DispatchTouchEvent(ev);
+            _lieAboutCurrentFocus = false;
+            return result;
+        }
+
+        public override Android.Views.View CurrentFocus
+        {
+            get
+            {
+                if (_lieAboutCurrentFocus)
+                {
+                    return null;
+                }
+                return base.CurrentFocus;
+            }
+        }
+
     }
 }

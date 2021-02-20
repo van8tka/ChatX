@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

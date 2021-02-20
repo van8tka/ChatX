@@ -88,6 +88,7 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\layout\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatX\ChatX.csproj">

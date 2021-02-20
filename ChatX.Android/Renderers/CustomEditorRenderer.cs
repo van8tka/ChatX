@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
+using Android.Views.InputMethods;
 using ChatX.Controls;
 using ChatX.Droid.Renderers;
 using Xamarin.Forms;
@@ -31,6 +33,7 @@ namespace ChatX.Droid.Renderers
             }
         }
 
+     
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
@@ -42,8 +45,6 @@ namespace ChatX.Droid.Renderers
                     Control.Background = _originalBackground;
             }
         }
-
-       
 
         private void ApplyBorder()
         {

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ChatX.Interfaces.Service;
 using ChatX.ViewModel;
 using Xamarin.Forms;
 
@@ -10,11 +11,9 @@ namespace ChatX.View.Partials
         {
             InitializeComponent();
             if (Device.RuntimePlatform == Device.iOS)
-                this.SetBinding(HeightRequestProperty, new Binding("Height", BindingMode.OneWay, source: chatTextInput));
-
+                this.SetBinding(HeightRequestProperty, new Binding("Height", BindingMode.OneWay, source: chatTextInput));          
         }
-        public void UnFocusEntry() => chatTextInput?.Unfocus();
-        public async void SetFocus() {await Task.Delay(5); chatTextInput?.Focus(); }
+      
     }
     
 }

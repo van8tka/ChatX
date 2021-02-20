@@ -19,25 +19,20 @@ namespace ChatX.ViewModel
             Messages = new ObservableCollection<MessageModel>();
         }
 
-
         private void SendMsg()
         {
             if (string.IsNullOrWhiteSpace(TextToSend))
                 return;
-            var newMsg = new MessageModel { Text = TextToSend, User = _session.CurrentUser.Name , Kind = Enums.MessagKindEnum.Outgoing };
+            var newMsg = new MessageModel { Text = TextToSend, User = _session.CurrentUser.Name, Kind = Enums.MessagKindEnum.Outgoing };
             MessageAddToChat(newMsg);
             TextToSend = string.Empty;
-            if (OnSetFocusCommand != null)
-                OnSetFocusCommand.Execute(null);
         }
 
         private void MessageAddToChat(MessageModel msg)
         {
-            Messages.Insert(0,msg);
-             
+            Messages.Add(msg);
         }
-
-        public ICommand OnSetFocusCommand { get; internal set; }
+       
         public ICommand OnSendCommand { get; private set; }
         private ObservableCollection<MessageModel> _messages;
         public ObservableCollection<MessageModel> Messages
@@ -64,9 +59,10 @@ namespace ChatX.ViewModel
         {
             IsBusy = true;
             ChatName = (parameter as UserModel)?.Name;
-            Messages = GetMessages();
+            if(ChatName!= "User_1")
+                Messages = GetMessages();
             _session = await _sessionService.GetSession();
-           // await FakeSender();
+            await FakeSender();
             await base.InitializeAsync(parameter);
         }
 

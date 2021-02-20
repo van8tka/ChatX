@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           x:Class="ChatX.View.MessageCellsView.OutgoingViewCell">
      <StackLayout
-           Margin="10,10,80,10">
+           Margin="80,10,10,10">
          <Frame      
                 BackgroundColor="Gold"
-             
-                Rotation="180"
                 HorizontalOptions="End"
                 HasShadow="True"
                 Padding="10"
@@ -16,5 +14,5 @@
         <Label Text="{Binding Text}" TextColor="Blue"/>
     </Frame>
     </StackLayout> 
-</ViewCell>
+</ContentView>
     

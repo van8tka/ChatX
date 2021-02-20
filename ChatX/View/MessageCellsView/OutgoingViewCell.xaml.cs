@@ -2,7 +2,7 @@
  
 namespace ChatX.View.MessageCellsView
 {
-    public partial class OutgoingViewCell : ViewCell
+    public partial class OutgoingViewCell : ContentView
     {
         public OutgoingViewCell()
         {
