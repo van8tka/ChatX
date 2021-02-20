@@ -40,11 +40,13 @@
                       HasUnevenRows="True"
                       SelectionMode="None"
                       SeparatorColor="Transparent"
+                      Rotation="180"
+                      FlowDirection="RightToLeft"
                       ItemTapped="ChatList_ItemTapped"
                       x:Name="ChatList">
             </ListView>
 
-            <BoxView Grid.Row="1"
+          <BoxView Grid.Row="1"
                      HorizontalOptions="FillAndExpand"
                      BackgroundColor="Transparent"
                      />

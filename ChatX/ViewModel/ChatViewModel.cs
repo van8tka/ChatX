@@ -1,9 +1,6 @@
 ﻿using ChatX.Interfaces.Service;
 using ChatX.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -30,16 +27,17 @@ namespace ChatX.ViewModel
             var newMsg = new MessageModel { Text = TextToSend, User = _session.CurrentUser.Name , Kind = Enums.MessagKindEnum.Outgoing };
             MessageAddToChat(newMsg);
             TextToSend = string.Empty;
+            if (OnSetFocusCommand != null)
+                OnSetFocusCommand.Execute(null);
         }
 
         private void MessageAddToChat(MessageModel msg)
         {
-            Messages.Add(msg);
-            if (OnScrollToLastCommand != null)
-                OnScrollToLastCommand.Execute(null);
+            Messages.Insert(0,msg);
+             
         }
 
-        public ICommand OnScrollToLastCommand { get; internal set; }
+        public ICommand OnSetFocusCommand { get; internal set; }
         public ICommand OnSendCommand { get; private set; }
         private ObservableCollection<MessageModel> _messages;
         public ObservableCollection<MessageModel> Messages
@@ -68,7 +66,7 @@ namespace ChatX.ViewModel
             ChatName = (parameter as UserModel)?.Name;
             Messages = GetMessages();
             _session = await _sessionService.GetSession();
-            await FakeSender();
+           // await FakeSender();
             await base.InitializeAsync(parameter);
         }
 

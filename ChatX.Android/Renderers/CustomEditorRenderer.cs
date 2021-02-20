@@ -28,7 +28,7 @@ namespace ChatX.Droid.Renderers
                     _initial = false;
                 }
                 Control.SetMaxLines(5);
-            }            
+            }
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -42,6 +42,8 @@ namespace ChatX.Droid.Renderers
                     Control.Background = _originalBackground;
             }
         }
+
+       
 
         private void ApplyBorder()
         {

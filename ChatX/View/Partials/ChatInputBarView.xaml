@@ -32,7 +32,8 @@
                    VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
-                        Tapped="chatTextInput_Completed"/>
+                        Command="{Binding OnSendCommand}"
+                        />
                 </Label.GestureRecognizers>
             </Label>
 
