@@ -1,18 +1,13 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using ChatX.Droid.Renderers;
-using Xamarin.Forms;
 
 namespace ChatX.Droid
 {
     [Activity(Label = "ChatX", Icon = "@mipmap/icon", Theme = "@style/MainChatXTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public partial class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,28 +22,7 @@ namespace ChatX.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        private bool _lieAboutCurrentFocus;
-        public override bool DispatchTouchEvent(MotionEvent ev)
-        {
-            var focused = CurrentFocus;
-            bool customEntryRendererFocused = focused != null && focused.Parent is CustomEditorRenderer;
-            _lieAboutCurrentFocus = customEntryRendererFocused;
-            var result = base.DispatchTouchEvent(ev);
-            _lieAboutCurrentFocus = false;
-            return result;
-        }
-
-        public override Android.Views.View CurrentFocus
-        {
-            get
-            {
-                if (_lieAboutCurrentFocus)
-                {
-                    return null;
-                }
-                return base.CurrentFocus;
-            }
-        }
+       
 
     }
 }

@@ -1,15 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using Android.App;
+﻿using System.ComponentModel;
 using Android.Content;
 using Android.Graphics.Drawables;
-using Android.Views.InputMethods;
 using ChatX.Controls;
 using ChatX.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly:ExportRenderer(typeof(ExtendedEditorControl),typeof(CustomEditorRenderer))]
+[assembly: ExportRenderer(typeof(ExtendedEditorControl), typeof(CustomEditorRenderer))]
 namespace ChatX.Droid.Renderers
 {
     public class CustomEditorRenderer:EditorRenderer

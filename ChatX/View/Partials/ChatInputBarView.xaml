@@ -2,9 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatX.View.Partials.ChatInputBarView"
-             xmlns:controls="clr-namespace:ChatX.Controls;assembly=ChatX"           
+             xmlns:controls="clr-namespace:ChatX.Controls;assembly=ChatX"
              >
-        <Grid RowSpacing="0" ColumnSpacing="0" >
+        <Grid
+             RowSpacing="0" ColumnSpacing="0"
+              >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -25,10 +27,12 @@
                    Placeholder="Type your message here.."
                    Grid.Row="0"
                    Grid.Column="0"
+
                    >
                 </controls:ExtendedEditorControl>
 
             <Button
+                x:Name="btnSend"
                     Text=">"
                     TextColor="Blue"
                     BackgroundColor="White"
@@ -38,7 +42,10 @@
                     Grid.Column="1"
                     Command="{Binding OnSendCommand}"
                     CornerRadius="20"
-                    Margin="3"   
+                    Margin="3"
+                    PropertyChanging="Button_PropertyChanging"
+                    
+                
             />
 
         </Grid>

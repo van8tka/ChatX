@@ -4,6 +4,9 @@
           x:Class="ChatX.View.MessageCellsView.OutgoingViewCell">
      <StackLayout
            Margin="80,10,10,10">
+         <StackLayout.GestureRecognizers>
+             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+         </StackLayout.GestureRecognizers>
          <Frame      
                 BackgroundColor="Gold"
                 HorizontalOptions="End"
@@ -11,7 +14,7 @@
                 Padding="10"
                 Margin="2"
           >
-        <Label Text="{Binding Text}" TextColor="Blue"/>
+        <Label x:Name="labelOutMsg" Text="{Binding Text}" TextColor="Blue"/>
     </Frame>
     </StackLayout> 
 </ContentView>
