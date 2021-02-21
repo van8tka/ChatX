@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ChatX.View.Partials;
 using Xamarin.Forms;
@@ -11,13 +12,11 @@ namespace ChatX.View.MessageCellsView
         {
             InitializeComponent();
         }
-
-        void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        private void TapGestureRecognizer_Tapped(object s, EventArgs e)
         {
-            if(ChatInputBarView.PressedBtnSend)
-            {// установка флага для убирания клавиатуры -андроид
-                ChatInputBarView.PressedBtnSend = false;
-            } 
+            var vm = (this.Parent?.Parent?.Parent as ChatView)?.ViewModel;
+            if (vm != null)
+                vm.TappedMessageCommand?.Execute(null);
         }
     }
 }

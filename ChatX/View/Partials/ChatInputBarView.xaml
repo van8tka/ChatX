@@ -14,39 +14,37 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <controls:ExtendedEditorControl
-                   x:Name="chatTextInput"
-                   Text="{Binding TextToSend}"
-                   Margin="1"
-                   TextColor="Blue"
-                   Keyboard="Chat"
-                   IsExpandable="True"
-                   HasRoundedCorner="True"
-                   HorizontalOptions="FillAndExpand"
-                   PlaceholderColor="DarkGray"
-                   Placeholder="Type your message here.."
-                   Grid.Row="0"
-                   Grid.Column="0"
-
-                   >
-                </controls:ExtendedEditorControl>
-
-            <Button
-                x:Name="btnSend"
-                    Text=">"
-                    TextColor="Blue"
-                    BackgroundColor="White"
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Command="{Binding OnSendCommand}"
-                    CornerRadius="20"
-                    Margin="3"
-                    PropertyChanging="Button_PropertyChanging"
-                    
-                
-            />
+                <controls:ExtendedEditorControl
+                       x:Name="chatTextInput"
+                       Text="{Binding TextToSend}"
+                       Margin="1"
+                       TextColor="Blue"
+                       Keyboard="Chat"
+                       IsExpandable="True"
+                       HasRoundedCorner="True"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="DarkGray"
+                       Placeholder="Type your message here.."
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Completed="chatTextInput_Completed"
+                      Focused="chatTextInput_Focused"
+                       >
+                    </controls:ExtendedEditorControl>
+                <Button
+                        x:Name="btnSend"
+                        Text=">"
+                        TextColor="Blue"
+                        BackgroundColor="White"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding OnSendCommand}"
+                        CornerRadius="20"
+                        Margin="3"
+                        PropertyChanging="Button_PropertyChanging">
+              </Button>
 
         </Grid>
 </ContentView>

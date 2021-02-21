@@ -32,7 +32,8 @@ namespace ChatX.ViewModel
         {
             Messages.Add(msg);
         }
-       
+
+        public ICommand TappedMessageCommand { get; internal set; }
         public ICommand OnSendCommand { get; private set; }
         private ObservableCollection<MessageModel> _messages;
         public ObservableCollection<MessageModel> Messages

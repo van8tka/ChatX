@@ -25,6 +25,7 @@
     second row  - separator betwen input and list messages
     third row - input-->
     <ContentPage.Content>
+        <!--<ScrollView>-->
         <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="StartAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -46,7 +47,8 @@
                      HorizontalOptions="FillAndExpand"
                      BackgroundColor="Red"
                      />
-            <partials:ChatInputBarView Grid.Row="2" Margin="0,0,10,10" x:Name="chatInput"/>
+            <partials:ChatInputBarView Grid.Row="2" Margin="0,0,10,0" x:Name="chatInput"/>
         </Grid>
+          <!--  </ScrollView>-->
     </ContentPage.Content>
 </ContentPage>
