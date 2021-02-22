@@ -10,7 +10,7 @@
              Title="ChatX"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Search"  />
+        <ToolbarItem Name="Search"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView ItemsSource="{Binding Contacts}"

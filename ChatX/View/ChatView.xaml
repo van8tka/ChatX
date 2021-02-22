@@ -9,8 +9,8 @@
              Title="{Binding ChatName}"
              IsBusy="{Binding IsBusy}"
              BackgroundColor="LightGoldenrodYellow"
-           
              >
+ 
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Settings"/>
     </ContentPage.ToolbarItems>
@@ -25,7 +25,27 @@
     second row  - separator betwen input and list messages
     third row - input-->
     <ContentPage.Content>
-        <!--<ScrollView>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <CollectionView
+                 Grid.Row="0"
+                 ItemsSource="{Binding Messages}"
+                 ItemTemplate="{StaticResource MsgTemplateSelector}"
+                 BackgroundColor="Red"
+                 SelectionMode="None"
+                 ItemsUpdatingScrollMode="KeepLastItemInView"
+                 x:Name="ChatList"
+                >
+                </CollectionView>
+         
+            <partials:ChatInputBarView Margin="0,0,10,0" x:Name="chatInput"
+                Grid.Row="1"                      
+                 />
+        </Grid>
+    <!--<ScrollView>
         <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="StartAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -49,6 +69,6 @@
                      />
             <partials:ChatInputBarView Grid.Row="2" Margin="0,0,10,0" x:Name="chatInput"/>
         </Grid>
-          <!--  </ScrollView>-->
+      </ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

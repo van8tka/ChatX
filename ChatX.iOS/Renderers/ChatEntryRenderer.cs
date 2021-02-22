@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using ChatX.iOS.Renderers;
 using ChatX.View.Partials;
 using Foundation;
@@ -14,13 +16,16 @@ namespace ChatX.iOS.Renderers
         private NSObject _keyboardShowObserver;
         private NSObject _keyboardHideObserver;
 
+       
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.View> e)
         {
             base.OnElementChanged(e);
             if (e.NewElement != null)
+            {
                 RegisterForKeyboardNotifications();
+            } 
             if (e.OldElement != null)
-                UnregisterForKeyboardNotifications();
+               UnregisterForKeyboardNotifications();
         }
 
         private void UnregisterForKeyboardNotifications()
@@ -34,23 +39,27 @@ namespace ChatX.iOS.Renderers
         private void RegisterForKeyboardNotifications()
         {
             if (_keyboardShowObserver == null)
-                _keyboardShowObserver = UIKeyboard.Notifications.ObserveWillShow(OnKeyboardShow);
+                _keyboardShowObserver = UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow);
             if (_keyboardHideObserver == null)
-                _keyboardHideObserver = UIKeyboard.Notifications.ObserveWillHide(OnKeyboardHide);
+                _keyboardHideObserver = UIKeyboard.Notifications.ObserveDidHide(OnKeyboardHide);
         }
 
         private void OnKeyboardHide(object sender, UIKeyboardEventArgs e)
         {
-            if (Element != null)
+            Debug.WriteLine("keyb_hide");
+            if (Element != null) 
                 Element.Margin = new Thickness(0);
         }
 
         private void OnKeyboardShow(object sender, UIKeyboardEventArgs e)
         {
-            var keyInfo = (NSValue)e.Notification.UserInfo.ObjectForKey(new NSString(UIKeyboard.FrameEndUserInfoKey));
-            var frame = keyInfo.RectangleFValue.Size;
-            if (Element != null)
-                Element.Margin = new Thickness(0, 0, 0, frame.Height);
+             var keyInfo = (NSValue)e.Notification.UserInfo.ObjectForKey(new NSString(UIKeyboard.FrameEndUserInfoKey));
+             var frame = keyInfo.RectangleFValue.Size;
+             Debug.WriteLine("keyb_show");
+             if ( Element != null )
+                 Element.Margin = new Thickness(0, 0, 0, frame.Height);
+             if (ChatInputBarView.PressedBtnSend)//set flag - for next step keyboard will not show
+                ChatInputBarView.PressedBtnSend = false;
         }
     }
 }

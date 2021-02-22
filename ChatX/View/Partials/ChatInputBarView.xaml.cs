@@ -1,15 +1,20 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
-using ChatX.Interfaces.Service;
-using ChatX.ViewModel;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using System;
+
+
 namespace ChatX.View.Partials
 {
     public partial class ChatInputBarView : ContentView
     {
-
+        /// <summary>
+        /// флаг для работы с клавиатурой - поднять и показывать постоянно для андроида и для ios
+        /// false - hide keyboard
+        /// true - show keyboard
+        /// </summary>
         public static bool PressedBtnSend;
+        private bool _isFirstSetFocus;
+
         public ChatInputBarView()
         {
             PressedBtnSend = false;
@@ -17,33 +22,23 @@ namespace ChatX.View.Partials
             if (Device.RuntimePlatform == Device.iOS)
                 this.SetBinding(HeightRequestProperty, new Binding("Height", BindingMode.OneWay, source: chatTextInput));
             _isFirstSetFocus = true;
-            isFocus = null;
         }
 
         private async void Button_PropertyChanging(Object sender, Xamarin.Forms.PropertyChangingEventArgs e)
         {
-            await Task.Yield();
+            if(Device.RuntimePlatform == Device.Android)
+                await Task.Yield();
             if (string.Equals(e.PropertyName, "ispressed", System.StringComparison.OrdinalIgnoreCase))
             {
                 PressedBtnSend = true;
             }
         }
-
-        private bool? isFocus;
         private void chatTextInput_Completed(Object sender, EventArgs e)
         {
-            if (isFocus == null || isFocus == true)
+            if(PressedBtnSend)
                 chatTextInput.Focus();
-            isFocus = true;
         }
 
-        private void UnFocus(){ 
-            isFocus = false;
-            chatTextInput.Unfocus();
-            isFocus = false;
-        }
-
-        private bool _isFirstSetFocus;
         private void chatTextInput_Focused(object sender, EventArgs e)
         {
             if (_isFirstSetFocus)
@@ -56,11 +51,10 @@ namespace ChatX.View.Partials
         }
         private void HideKeyboard()
         {
-            if (PressedBtnSend)
-            {//установка флага для убирания клавиатуры - андроид
-                PressedBtnSend = false;
-            }
-            UnFocus();
+            if(Device.RuntimePlatform==Device.Android)
+                if (PressedBtnSend)
+                    PressedBtnSend = false;
+            chatTextInput.Unfocus();
         }
     }
     

@@ -1,4 +1,6 @@
-﻿using ChatX.ViewModel;
+﻿using System.Diagnostics;
+using ChatX.Interfaces.Service;
+using ChatX.ViewModel;
 using Xamarin.Forms;
 
 namespace ChatX.View

@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using ChatX.Controls;
 using ChatX.iOS.Renderers;
 using CoreGraphics;
@@ -7,7 +7,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly:ExportRenderer(typeof(ExtendedEditorControl),typeof(CustomEditorRenderer))]
+[assembly: ExportRenderer(typeof(ExtendedEditorControl), typeof(CustomEditorRenderer))]
 namespace ChatX.iOS.Renderers
 {
     public class CustomEditorRenderer:EditorRenderer
@@ -31,7 +31,7 @@ namespace ChatX.iOS.Renderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            var custom = (ExtendedEditorControl)Element;
+            var custom = (ExtendedEditorControl)Element; 
             if(e.PropertyName == Editor.TextProperty.PropertyName)
             {
                 if (custom.IsExpandable)

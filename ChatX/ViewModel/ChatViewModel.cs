@@ -63,7 +63,7 @@ namespace ChatX.ViewModel
             if(ChatName!= "User_1")
                 Messages = GetMessages();
             _session = await _sessionService.GetSession();
-            await FakeSender();
+        //    await FakeSender();
             await base.InitializeAsync(parameter);
         }
 
